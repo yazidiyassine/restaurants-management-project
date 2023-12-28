@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         'admin_or_manager' => \App\Http\Middleware\CheckAdminOrRestaurantManager::class,
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'customer' => \App\Http\Middleware\CustomerMiddleware::class,
+        'restaurant_required_ownership' => \App\Http\Middleware\restaurant_required_ownership::class,
     ];
 
     protected $middleware = [

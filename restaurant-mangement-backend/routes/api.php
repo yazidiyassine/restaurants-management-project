@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update/{id}', [RegisterController::class, 'update']);
 
     Route::middleware(['admin_or_manager'])->group(function (){
-        Route::middleware('restaurant_required')->group(function () {
+        Route::middleware('restaurant_required_ownership')->group(function () {
             Route::prefix('menu_items')->group(function () {
                 Route::post('/add', [MenuItemsController::class, 'store']);
                 Route::post('/update/{menuItem_id}', [MenuItemsController::class, 'update'])->name('update_menu_item');

@@ -4,6 +4,7 @@ import { useKeenSlider } from 'keen-slider/react';
 import { ArrowLongLeftIcon, ArrowLongRightIcon } from '@heroicons/react/24/outline';
 import 'keen-slider/keen-slider.min.css';
 import {Skeleton} from "@mui/material";
+import {Link} from "react-router-dom";
 
 const FoodList = ({ menuItems }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -83,7 +84,13 @@ const FoodList = ({ menuItems }) => {
                 {menuItems.map((menuItem, index) => (
                     <div className='keen-slider__slide' key={index}>
                         {menuItem ? (
+                            <Link
+                                to={`/get-restaurant-info/${menuItem.restaurant.id}`}
+                                className='hover:scale-95 transition ease-in-out duration-300 relative z-10 flex'
+                                key={index}
+                            >
                             <FoodItem menuItem={menuItem} />
+                            </Link>
                         ) : (
                             <Skeleton animation="wave" variant="circular" width={104} height={129} />
                         )}

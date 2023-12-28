@@ -196,7 +196,7 @@ const MenuList = () => {
                                         <TableRow>
                                             <TableCell>Item Name</TableCell>
                                             <TableCell align="right">Price</TableCell>
-                                            <TableCell align="right"># of items</TableCell>
+                                            <TableCell align="right">Quantity</TableCell>
                                             <TableCell align="right">Remove</TableCell>
                                         </TableRow>
                                     </TableHead>

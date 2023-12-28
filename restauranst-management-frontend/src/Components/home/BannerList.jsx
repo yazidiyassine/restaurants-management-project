@@ -7,6 +7,7 @@ import {
 import { useState } from 'react';
 import ShimmerBanner from "./ShimmerBanner";
 import 'keen-slider/keen-slider.min.css';
+import {Link} from "react-router-dom";
 
 const BannerList = ({ isLoading, banners }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -66,8 +67,12 @@ const BannerList = ({ isLoading, banners }) => {
             </div>
         ) : (
             <div ref={sliderRef} className='keen-slider'>
-              {banners.map((banner) => (
-                  (banner.ispromoting === "true") ? <Banner banner={banner} key={banner.id}/> : null
+              {banners.map((banner, index) => (
+                  (banner.ispromoting === "true") ?  <Link
+                      to={`/get-restaurant-info/${banner.id}`}
+                      className='hover:scale-95 transition ease-in-out duration-300 relative z-10 flex'
+                      key={index}
+                  > <Banner banner={banner} key={banner.id}/> </Link> : null
               ))}
             </div>
         )}

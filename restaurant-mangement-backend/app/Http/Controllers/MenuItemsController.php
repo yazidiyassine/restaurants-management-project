@@ -35,7 +35,7 @@ class MenuItemsController extends Controller
 
         $menuItem = MenuItem::create(array_merge($data, ['user_id' => Auth::id()]));
 
-        Cache::forget('menu_items_of_' . $menuItem->restaurant_id);
+        /*Cache::forget('menu_items_of_' . $menuItem->restaurant_id);*/
         # why do we need to forget the cache?
         # because we want to update the cache with the new menu item
         return response()->json([
@@ -52,9 +52,9 @@ class MenuItemsController extends Controller
             # implementing caching
             # why caching? because we don't want to hit the database every time we make a request to this endpoint
             # we want to cache the menu items for a specific restaurant
-            $menuItems = Cache::rememberForever('menu_items_of_' . request('restaurant_id'), function () {
-                return MenuItem::where('restaurant_id', request('restaurant_id'))->get();
-            });
+            $menuItems = MenuItem::where('restaurant_id', request('restaurant_id'))->get();
+            /*$menuItems = Cache::rememberForever('menu_items_of_' . request('restaurant_id'), function () {
+            });*/
         } else {
             $menuItems = MenuItem::all();
         }
